@@ -8,7 +8,12 @@ const jwt = require('jsonwebtoken');
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, secretKey } = req.body;
+
+    // check if secret key is correct
+    if (secretKey !== process.env.REGISTER_SECRET_KEY) {
+      return res.status(401).json({ message: 'Your secret key is incorrect.' });
+    }
 
     // Validation
     if (!name || !email || !password) {
