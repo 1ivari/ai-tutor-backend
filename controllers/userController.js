@@ -8,10 +8,10 @@ const jwt = require('jsonwebtoken');
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { name, email, password } = req.body;
 
     // Validation
-    if (!username || !email || !password) {
+    if (!name || !email || !password) {
       res.status(400);
       throw new Error('Please include all fields.');
       // return res.status(400).json({ message: 'Please include all fields.' });
@@ -31,14 +31,14 @@ const registerUser = asyncHandler(async (req, res) => {
 
     // Create user
     const newUser = await User.create({
-      username,
+      name,
       email,
       password: hashedPassword,
     });
 
     res.status(201).json({
       id: newUser.id,
-      username: newUser.username,
+      name: newUser.name,
       email: newUser.email,
       token: generateToken(newUser.id),
     });
@@ -64,7 +64,7 @@ const loginUser = asyncHandler(async (req, res) => {
     if (user && (await bcrypt.compare(password, user.password))) {
       res.status(200).json({
         id: user.id,
-        username: user.username,
+        name: user.name,
         email: user.email,
         token: generateToken(user.id),
       });
@@ -84,7 +84,7 @@ const getMe = asyncHandler(async (req, res) => {
   const user = {
     id: req.user.id,
     email: req.user.email,
-    username: req.user.username,
+    name: req.user.name,
   };
   res.status(200).json(user);
 });
