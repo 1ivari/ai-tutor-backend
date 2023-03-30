@@ -13,7 +13,7 @@ const sequelize = new Sequelize(dbName, username, pw, {
   port: port,
 });
 
-const testConnection = async () => {
+const connectDB = async () => {
   try {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
@@ -22,6 +22,6 @@ const testConnection = async () => {
   }
 };
 
-testConnection();
+// connectDB();
 
-module.exports = sequelize;
+module.exports = { sequelize, connectDB };
