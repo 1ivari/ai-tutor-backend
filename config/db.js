@@ -5,7 +5,7 @@ const username = process.env.DB_USERNAME;
 const pw = process.env.DB_PW;
 // const host = process.env.DB_HOST;
 // const dialect = process.env.DB_DIALECT;
-const port = process.env.DB_PORT || 3000;
+const port = process.env.DB_PORT || 8080;
 
 const sequelize = new Sequelize(dbName, username, pw, {
   host: 'localhost',
