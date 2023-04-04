@@ -11,7 +11,7 @@ const { errorHandler } = require('./middleware/errorMiddleware');
 // const credentials = require('./middleware/credentials');
 const { connectDB } = require('./config/db');
 const { Pool } = require('pg');
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 // Connect to PostgreSQL
 connectDB();
